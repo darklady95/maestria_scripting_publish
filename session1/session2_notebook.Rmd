@@ -1,0 +1,98 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+Frames
+```{r}
+mtcars
+head(mtcars)
+tail(mtcars)
+str(mtcars)
+```
+Definition of vector
+
+```{r}
+name <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+type <- c("Terrestrial planet", "Terrestrial planet", "Terrestrial planet", 
+          "Terrestrial planet", "Gas giant", "Gas giant", "Gas giant", "Gas giant")
+diameter <- c(0.382, 0.949, 1, 0.532, 11.209, 9.449, 4.007, 3.883)
+rotation <- c(58.64, -243.02, 1, 1.03, 0.41, 0.43, -0.72, 0.67)
+rings <- c(FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+planets_df <- data.frame(name,type,diameter,rotation,rings)
+planets_df
+
+
+```
+
+```{r}
+planets_df[1,3]
+planets_df[4,]
+planets_df[1:5,]
+planets_df[1:5,c("rotation","type")]
+
+
+```
+```{r}
+rings_vector <-planets_df$rings
+rings_vector
+
+planets_df[rings_vector,]
+subset(planets_df,subset=diameter<1)
+```
+```{r}
+a<-c(100,10,1000)
+order(a)
+a[order(a)] 
+b<-a[order(a)] 
+b
+
+```
+
+Listas Definicion, deben de ser del mismo tipo, o sea igual que SQL
+
+```{r}
+my_vector <- 1:10
+my_matrix <- matrix(1:9,ncol=3)
+my_df <- planets_df[1:4,]
+my_list <- list(my_vector,my_matrix,my_df)
+my_list
+
+
+```   
+Creating a names list
+
+```{r}
+names(my_list) <- c("vector","matrix","data frame")
+my_list
+
+```
+Selecting elements from a list
+
+```{r}
+my_list[[1]]
+my_list[[2]]
+my_list[[3]]
+
+my_list[[1]][4]
+my_list[[2]][2,]
+my_list[[3]][2:3,1:2]
+my_list[[3]][2:3,c("rotation","rings")]
+
+```
+
