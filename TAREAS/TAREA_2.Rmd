@@ -1,0 +1,209 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+
+
+FUNCIONES EN R
+-------------------------
+
+ESTRUCTURA DE UNA FUNCION
+--------------------------
+Una función consta de 3 elementos:
+Argumentos: que son los valores de entrada o los parámetros.
+Cuerpo: Se colocan dentro de corchetes, contiene las operaciones que debe realizar la función.
+Resultado: Es el "return" de la función, perse.
+
+Las funciones también son objetod y se le da un nombre, se debe evitar utilizar nombres o palabras reservadas en R.
+Los argumentos se separan pr comas. Los argumentos pueden tener un valor predeterminado.
+
+EJEMPLO DE FUNCION
+--------------------------
+
+nuestra_funcion <- function(arg1, arg2=5, ...) {
+cuerpo
+resultado
+}
+
+En éste caso, la función tiene el nombre "nuestra_funcion", y recibe dos parámetros o argumentos, de los cuales uno de los 2 arguemntos, es decir el segundo, tiene un valor definido o constante en éste caso es 5.
+
+El cuerpo de la función contiene las operaciones que deseamos se ejecuten al llamar dicha función "nuestra_funcion".
+
+ARGUMENTOS DE UNA FUNCION
+--------------------------
+Los argumentos de una función pueden ser numericos o caracteres, así mismo pueden tener definidos valores.
+
+
+ARGUMENTOS POR VALOR
+--------------------------
+SOn los argumentos que se definen dentro de la función con un valor específico
+
+
+EJEMPLOS DE FUNCIONES
+---------------------------
+
+```{r}
+suma<-function(x,y){
+  #realiza una sumatoria de los valores "x" y "y"
+  x+y
+}
+
+suma(x=2,y=3) #desplegará 5
+
+suma(2,3) #funcionará igual que el anterior sin colocar explicitamente cual es X y cual Y
+
+potencia <- function(x,y)
+{
+  #calcula el valor de elevar "x" a la "y" potencia
+  result<-x^y
+  paste(x,"Elevando a la potencia",y,"=",result)
+  
+}
+
+potencia(2,3)
+
+absoluto <- function(x)
+{
+  #obtener el valor absoluto de "x"
+  if(x<0)
+  {
+    -x
+  }
+  else{x}
+  
+}
+absoluto(3)
+
+```
+FAMILLIA APPLY
+-------------------
+Estas funciones reciben como argumentos a una obheto y al menos una función.
+Las funciones de la familia apply tiene la particularidad que pueden recibir otra función como un argumento.
+
+Dentro de ésta familia se encuntran  las siguientes funciones
+
+apply()
+eappy()
+lapply()
+mapply()
+rapply()
+sapply()
+tapply()
+vapply()
+
+
+USANDO LAPPLY()
+---------------------
+
+Es un caso especial de apply(), diseñano para aplicar funciones a todos los elementos de una lista. La "L" de su nombre se refiere, precisamente , a una lista.
+
+lapply() intentará coercionar a una lista el objeto ue se dé como argumento y después plicará una función a todos sus elementos.
+lapply, siemrpe devolverá una lista con resultado. A diferencia de apply, que siempre se obtendrá un objeto de tipo lista despues de aplicar una función, sin importaar cuál función sea.
+Dado que en R todas las estrucutras de datos pueden coercionarse a una lista, lapply() pueden usuarse en un número más amplio de casos que apply(), ademas que de esto permite utilizar funciones que aceptan argumentos distintos a vectores.
+
+La estructura de ésta función es:
+
+lappy(X,FUN)
+
+Donde,
+X, es una lista o un objeto coercionable a una lista
+FUN, es la función a aplicar.
+Estos argumentos son idénticos a los de apply(), pero a diferencia que aquí no se especifica MARGIEN, puesto que las listas son estructuras con una unidimensionalidad, que sólo tiene largo.
+
+EJEMPLO
+----------
+Aplicando una función a un dataframe, Se utilizará el conjunto de datos trees, incluido por defecto en R base.
+trees, contiene datos sobre el grueso, alto y volumen de distintos árboles de cerezo negro. Cada una de estas variables está almacenda en una columna del data frame.
+
+```{r}
+trees[1:5,]
+```
+se aplica la función mean(), usando su nombre
+```{r}
+lapply(X=trees, FUN=mean)
+```
+USANDO SAPPLY()
+---------------------
+La función sapply en R aplica una función a un vector o lista y devuelve un vector, una matriz o un array. La función tiene la siguiente sintaxis:
+
+sapply(X,   # Vector o lista
+       FUN, # Función a ser aplicada
+       ..., # Argumentos adicionales para ser pasados a FUN
+       simplify = TRUE,  # Si FALSE devuelve una lista. Si "array" devuelve un array si es posible
+       USE.NAMES = TRUE) # Si TRUE y si X es un vector de caracteres, usa los nombres de X
+       
+```{r}
+sapply(1:4, sqrt)
+# 1.000000 1.414214 1.732051 2.000000
+
+# Equivalente a:
+sapply(1:4, function(i) sqrt(i)) 
+
+# También equivalente a:
+mi_fun <- function(i) {
+    sqrt(i)
+}
+
+sapply(1:4, mi_fun) 
+```
+ITERAR SOBRE UN  VECTOR
+-----------------------
+Considera, por ejemplo se desea calcular el cuadrado de los elementos de un vector. Usando el bucle "FOR" se necesitará el siguiente código:
+
+```{r}
+out <- numeric(10)
+for(i in 1:10) {
+   out[i] <- i ^ 2
+}
+out
+```
+Sin embargo, con la función sapply, se podrá obtener el mismo resultado escribiendo una sola linea de código:
+
+```{r}
+sapply(1:10, function(i) i ^ 2)
+```
+ITERAR SOBRE UA LISTA
+
+```{r}
+Lista <- list(A = 1:5, B = 6:20, C = 1)
+
+sapply(Lista, length)
+```
+
+
+USANDO VAPPLY()
+---------------------
+vapply, devuelve un vector con la longitud que tiene cada yuna de las listas introducidas como parámetro
+```{r}
+
+x <- list(A = 1, B = 1:3, C = 1:7)
+x
+vapply(x, FUN = length, FUN.VALUE = 0L)
+```
+
+
+
+
+
+
+
+
+
+
+
+
