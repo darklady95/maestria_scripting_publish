@@ -67,4 +67,130 @@ if(num_views>15)
 }
 
 ```
+Customize further:else if
+
+```{r}
+
+medium <-"Facebook"
+if (medium=="Linkedin"){
+print("Showing LinkedIn information") 
+} else if(medium=="Facebook")
+{
+  print("Show Facebook Information")
+}else{print("Unknow medium")}
+```
+Else if 2.0
+
+```{r}
+number <- 6
+
+if (number<10){
+   if (number<5){
+     result <-"extra small"
+   }
+  else{
+    result <-"small"
+   }
+} else if (number <100){
+    result<-"medium"
+    
+}  else{
+    result <-"large"
+}
+
+print(result)
+```
+SESION_CLASE_19_06_2021
+
+Loops
+
+```{r}
+speed<-64
+while(speed>30){
+  print(paste("Your spedd is",speed))
+  if(speed>=48){
+    print("Slow down big time!")
+    speed<-speed-11
+  }else{
+    print("slow down!")
+    speed<-speed-6
+  }
+}
+  
+speed
+
+```
+Break
+
+```{r}
+speed<-88
+while(speed>30){
+  print(paste("Your spedd is",speed))
+  if(speed>80){
+    break
+  }
+  if(speed>48){
+    print("slow down big time!")
+    speed<-speed-11
+  }else{
+    print("slow down!")
+    speed<-speed-6
+  }
+}
+  
+speed
+
+```
+FOR
+
+```{r}
+linkedin<-c(16,9,13,5,2,17,14)
+
+for(l in linkedin)
+{
+  print(l)
+}
+
+for(i in 1:length(linkedin)){
+  print(linkedin[i])
+}
+```
+
+LOOP OVER A LIST
+
+```{r}
+
+nyc <- list(pop=8405837,broughs=c("Manhattan","Bronx","Brooklyn","Queens","State Island"),capital=FALSE)
+for(n in nyc)
+{
+  print(n)
+}
+
+for(i in 1:length(nyc)){
+   if(i==2){
+     for(j in 1:length(nyc[[i]])){
+       print(nyc[[i]][j])
+     }
+   }
+  else
+  {
+    print(nyc[[i]])
+  }
+}
+```
+LOOP OVER A MATRIX
+------------------
+
+```{r}
+views <- matrix(c(linkedin,facebook),nrow=2,byrow=TRUE)
+views
+
+for(row in 1:nrow(views))
+{
+   for(col in 1:ncol(views))
+   {
+     print(paste("on row",row,"and column",col,"contains",views[row,col]))
+   }
+}
+```
 
