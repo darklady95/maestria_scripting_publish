@@ -2,5 +2,45 @@
 title: "R Notebook"
 output: html_notebook
 ---
+Se cuentan con los registros de las notas de 5 estudiantes, los cuales se colocarán en colecciones independientes
+/----------------------
+1. VECTORES Y MATRICES
+/----------------------
+//-------------------------------------------------------------------------------------------------------------------
+1.1 
+Se crea un VECTOR por cada estudiante donde se alamacenarán los 5 registros, es decir los 4 que corresponden a una nota específica, y el quinto registro que determina di el estudiante es mayor de edad o no.
+//-------------------------------------------------------------------------------------------------------------------
 
+```{r}
+student_1<-c(50.4,62.3,92.1,77.6,TRUE)
+student_2<-c(41.7,87.9,75.3,72.4,FALSE)
+student_3<-c(30.3,67.8,69.3,71.2,FALSE)
+student_4<-c(65.4,85.1,92.3,96.8,TRUE)
+student_5<-c(70.4,88.2,95.2,90.7,TRUE)
+```
+
+//-------------------------------------------------------------------------------------------------------------------
+1.2
+Se crea el vector "students_vector", con cada uno de los vectores creados anteriormente
+//-------------------------------------------------------------------------------------------------------------------
+```{r}
+students_vector<-c(student_1,student_2,student_3,student_3,student_4,student_5)
+students_vector
+```
+//-------------------------------------------------------------------------------------------------------------------
+1.3
+Construir una matriz de nombre "students_matrix", con parametros "students_vector"
+//-------------------------------------------------------------------------------------------------------------------
+```{r}
+students_matrix <- matrix(students_vector,byrow=TRUE,nrow=5)
+students_matrix
+
+```
+/----------------------
+1. VECTORES Y MATRICES
+/----------------------
+//-------------------------------------------------------------------------------------------------------------------
+1.1 
+Se crea un VECTOR por cada estudiante donde se alamacenarán los 5 registros, es decir los 4 que corresponden a una nota específica, y el quinto registro que determina di el estudiante es mayor de edad o no.
+//-------------------------------------------------------------------------------------------------------------------
 
