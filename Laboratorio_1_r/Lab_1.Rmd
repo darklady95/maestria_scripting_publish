@@ -149,7 +149,43 @@ Construya un data frame "students_grades_df", utilizando "result_students"
 
 
 ```{r}
+students_grades_df<-data.frame(result_students)
+students_grades_df
 
+
+```
+//-------------------------------------------------------------------------------------------------------------------
+5.2
+utilizando la funcion subset en students_grades_df,para filtrar la condición que "Accountung" sea mayor a 80 y que "Legal_age", sea verdadero
+//-------------------------------------------------------------------------------------------------------------------
+
+```{r}
+subset80<-subset(students_grades_df, subset = Accounting > 80 & Legal_age == TRUE)
+subset80
+
+```
+/----------------------
+6. FUNCIONES, CONDICIONES Y BUCLES
+/----------------------
+//-------------------------------------------------------------------------------------------------------------------
+6.1
+Construya una función de nombre "studenst_projection"
+//-------------------------------------------------------------------------------------------------------------------
+
+```{r}
+students_projection <-function()
+{
+  for(es in result_students[,1:4])
+  {
+     print(es)
+    for(es in result_students[,4])
+     {
+       print(es)
+     }
+  }
+}
+
+students_projection()
 
 
 ```
