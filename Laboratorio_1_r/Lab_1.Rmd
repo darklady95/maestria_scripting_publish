@@ -17,6 +17,12 @@ student_2<-c(41.7,87.9,75.3,72.4,FALSE)
 student_3<-c(30.3,67.8,69.3,71.2,FALSE)
 student_4<-c(65.4,85.1,92.3,96.8,TRUE)
 student_5<-c(70.4,88.2,95.2,90.7,TRUE)
+student_1
+student_2
+student_3
+student_4
+student_5
+
 ```
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -41,6 +47,23 @@ students_matrix
 /----------------------
 //-------------------------------------------------------------------------------------------------------------------
 2.1 
-Creación de los vectores 
+Creación de los vectores "name_students" y "name_courses_legal_age" con los valores expuestos en el laboratorio
 //-------------------------------------------------------------------------------------------------------------------
+
+```{r}
+name_students<-c("Lily Brown","Davis Moore","Susan Taylor","Mike Jones","Tom Hill")
+name_students
+name_courses_legal_age<-c("TIC","Accounting","Psychology","Ethics","Legal_age")
+name_courses_legal_age
+
+
+```
+//-------------------------------------------------------------------------------------------------------------------
+2.2 
+Utilizando los vectores creados en la sección 2.1 para crear el nombrado de filas y columnas de la matriz "students_vector". En las filas deberán aparecer los estudiantes y en las columnos los cursos y si es mayor de edad
+//-------------------------------------------------------------------------------------------------------------------
+```{r}
+
+
+```
 
