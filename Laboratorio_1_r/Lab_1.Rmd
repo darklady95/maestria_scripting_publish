@@ -37,10 +37,10 @@ students_matrix
 
 ```
 /----------------------
-1. VECTORES Y MATRICES
+2. NOMBRADO DE UNA MATRIZ
 /----------------------
 //-------------------------------------------------------------------------------------------------------------------
-1.1 
-Se crea un VECTOR por cada estudiante donde se alamacenarán los 5 registros, es decir los 4 que corresponden a una nota específica, y el quinto registro que determina di el estudiante es mayor de edad o no.
+2.1 
+Creación de los vectores 
 //-------------------------------------------------------------------------------------------------------------------
 
