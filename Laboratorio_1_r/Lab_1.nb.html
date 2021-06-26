@@ -215,21 +215,45 @@ pre code {
 
 
 <!-- rnb-text-begin -->
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
-<p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl+Shift+Enter</em>.</p>
+<p>Se cuentan con los registros de las notas de 5 estudiantes, los cuales se colocarán en colecciones independientes /———————- 1. VECTORES Y MATRICES /———————- //——————————————————————————————————————- 1.1 Se crea un VECTOR por cada estudiante donde se alamacenarán los 5 registros, es decir los 4 que corresponden a una nota específica, y el quinto registro que determina di el estudiante es mayor de edad o no. //——————————————————————————————————————-</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Ctrl+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
+<p>//——————————————————————————————————————- 1.2 Se crea el vector “students_vector”, con cada uno de los vectores creados anteriormente //——————————————————————————————————————-</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3R1ZGVudHNfdmVjdG9yXG5cbmBgYCJ9 -->
+<pre class="r"><code>students_vector
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSA1MC40IDYyLjMgOTIuMSA3Ny42ICAxLjAgNDEuNyA4Ny45IDc1LjMgNzIuNCAgMC4wIDMwLjMgNjcuOCA2OS4zIDcxLjIgIDAuMCAzMC4zIDY3LjggNjkuMyA3MS4yICAwLjAgNjUuNFxuWzIyXSA4NS4xIDkyLjMgOTYuOCAgMS4wIDcwLjQgODguMiA5NS4yIDkwLjcgIDEuMFxuIn0= -->
+<pre><code> [1] 50.4 62.3 92.1 77.6  1.0 41.7 87.9 75.3 72.4  0.0 30.3 67.8 69.3 71.2  0.0 30.3 67.8 69.3 71.2  0.0 65.4
+[22] 85.1 92.3 96.8  1.0 70.4 88.2 95.2 90.7  1.0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>//——————————————————————————————————————- 1.3 Construir una matriz de nombre “students_matrix”, con parametros “students_vector” //——————————————————————————————————————-</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3R1ZGVudHNfbWF0cml4XG5cbmBgYCJ9 -->
+<pre class="r"><code>students_matrix
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdIFssNV0gWyw2XVxuWzEsXSA1MC40IDYyLjMgOTIuMSA3Ny42ICAxLjAgNDEuN1xuWzIsXSA4Ny45IDc1LjMgNzIuNCAgMC4wIDMwLjMgNjcuOFxuWzMsXSA2OS4zIDcxLjIgIDAuMCAzMC4zIDY3LjggNjkuM1xuWzQsXSA3MS4yICAwLjAgNjUuNCA4NS4xIDkyLjMgOTYuOFxuWzUsXSAgMS4wIDcwLjQgODguMiA5NS4yIDkwLjcgIDEuMFxuIn0= -->
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,] 50.4 62.3 92.1 77.6  1.0 41.7
+[2,] 87.9 75.3 72.4  0.0 30.3 67.8
+[3,] 69.3 71.2  0.0 30.3 67.8 69.3
+[4,] 71.2  0.0 65.4 85.1 92.3 96.8
+[5,]  1.0 70.4 88.2 95.2 90.7  1.0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>/———————- 1. VECTORES Y MATRICES /———————- //——————————————————————————————————————- 1.1 Se crea un VECTOR por cada estudiante donde se alamacenarán los 5 registros, es decir los 4 que corresponden a una nota específica, y el quinto registro que determina di el estudiante es mayor de edad o no. //——————————————————————————————————————-</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLiANCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwrU2hpZnQrRW50ZXIqLiANCg0KYGBge3J9DQpwbG90KGNhcnMpDQpgYGANCg0KQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkN0cmwrQWx0K0kqLg0KDQpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4NCg0KVGhlIHByZXZpZXcgc2hvd3MgeW91IGEgcmVuZGVyZWQgSFRNTCBjb3B5IG9mIHRoZSBjb250ZW50cyBvZiB0aGUgZWRpdG9yLiBDb25zZXF1ZW50bHksIHVubGlrZSAqS25pdCosICpQcmV2aWV3KiBkb2VzIG5vdCBydW4gYW55IFIgY29kZSBjaHVua3MuIEluc3RlYWQsIHRoZSBvdXRwdXQgb2YgdGhlIGNodW5rIHdoZW4gaXQgd2FzIGxhc3QgcnVuIGluIHRoZSBlZGl0b3IgaXMgZGlzcGxheWVkLg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KU2UgY3VlbnRhbiBjb24gbG9zIHJlZ2lzdHJvcyBkZSBsYXMgbm90YXMgZGUgNSBlc3R1ZGlhbnRlcywgbG9zIGN1YWxlcyBzZSBjb2xvY2Fyw6FuIGVuIGNvbGVjY2lvbmVzIGluZGVwZW5kaWVudGVzDQovLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KMS4gVkVDVE9SRVMgWSBNQVRSSUNFUw0KLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KMS4xIA0KU2UgY3JlYSB1biBWRUNUT1IgcG9yIGNhZGEgZXN0dWRpYW50ZSBkb25kZSBzZSBhbGFtYWNlbmFyw6FuIGxvcyA1IHJlZ2lzdHJvcywgZXMgZGVjaXIgbG9zIDQgcXVlIGNvcnJlc3BvbmRlbiBhIHVuYSBub3RhIGVzcGVjw61maWNhLCB5IGVsIHF1aW50byByZWdpc3RybyBxdWUgZGV0ZXJtaW5hIGRpIGVsIGVzdHVkaWFudGUgZXMgbWF5b3IgZGUgZWRhZCBvIG5vLg0KLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCmBgYHtyfQ0Kc3R1ZGVudF8xPC1jKDUwLjQsNjIuMyw5Mi4xLDc3LjYsVFJVRSkNCnN0dWRlbnRfMjwtYyg0MS43LDg3LjksNzUuMyw3Mi40LEZBTFNFKQ0Kc3R1ZGVudF8zPC1jKDMwLjMsNjcuOCw2OS4zLDcxLjIsRkFMU0UpDQpzdHVkZW50XzQ8LWMoNjUuNCw4NS4xLDkyLjMsOTYuOCxUUlVFKQ0Kc3R1ZGVudF81PC1jKDcwLjQsODguMiw5NS4yLDkwLjcsVFJVRSkNCmBgYA0KDQovLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCjEuMg0KU2UgY3JlYSBlbCB2ZWN0b3IgInN0dWRlbnRzX3ZlY3RvciIsIGNvbiBjYWRhIHVubyBkZSBsb3MgdmVjdG9yZXMgY3JlYWRvcyBhbnRlcmlvcm1lbnRlDQovLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCmBgYHtyfQ0Kc3R1ZGVudHNfdmVjdG9yPC1jKHN0dWRlbnRfMSxzdHVkZW50XzIsc3R1ZGVudF8zLHN0dWRlbnRfMyxzdHVkZW50XzQsc3R1ZGVudF81KQ0Kc3R1ZGVudHNfdmVjdG9yDQpgYGANCi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KMS4zDQpDb25zdHJ1aXIgdW5hIG1hdHJpeiBkZSBub21icmUgInN0dWRlbnRzX21hdHJpeCIsIGNvbiBwYXJhbWV0cm9zICJzdHVkZW50c192ZWN0b3IiDQovLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCmBgYHtyfQ0Kc3R1ZGVudHNfbWF0cml4IDwtIG1hdHJpeChzdHVkZW50c192ZWN0b3IsYnlyb3c9VFJVRSxucm93PTUpDQpzdHVkZW50c19tYXRyaXgNCg0KYGBgDQovLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KMS4gVkVDVE9SRVMgWSBNQVRSSUNFUw0KLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCi8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KMS4xIA0KU2UgY3JlYSB1biBWRUNUT1IgcG9yIGNhZGEgZXN0dWRpYW50ZSBkb25kZSBzZSBhbGFtYWNlbmFyw6FuIGxvcyA1IHJlZ2lzdHJvcywgZXMgZGVjaXIgbG9zIDQgcXVlIGNvcnJlc3BvbmRlbiBhIHVuYSBub3RhIGVzcGVjw61maWNhLCB5IGVsIHF1aW50byByZWdpc3RybyBxdWUgZGV0ZXJtaW5hIGRpIGVsIGVzdHVkaWFudGUgZXMgbWF5b3IgZGUgZWRhZCBvIG5vLg0KLy8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCg==</div>
 
 
 
