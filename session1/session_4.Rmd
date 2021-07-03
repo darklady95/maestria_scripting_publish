@@ -102,4 +102,111 @@ print(min(t))
 FIN DE SESSION 19/06/2021
 ///
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+inicio sesión 26/06/2021
+/////////////////////////////////////////////////////////////////////////////////////////////
+lapply and anonymous functions
+
+```{r}
+(function(x){3*x})(9)
+pioneers <-c("GAUSS:1777","BAYES:1702","PASCAL:1623","PEARSON:1857")
+split<-strsplit(pioneers,split= ":")
+split_low <-lapply(split,tolower)
+years<-lapply(split_low,function(x){x[2]})
+years
+split_low
+
+
+
+```
+//--------------------------------------------------------------------------------
+USE LAPLY WITH ADDITIONAL ARGUMENTS
+//----------------------------------------------------------------------------------
+```{r}
+select_el <-function(x, index){
+  x[index]
+}
+names <-lapply(split_low,select_el,1)
+names
+
+years<-lapply(split_low,select_el,2)
+years
+
+```
+/-----------------SAPPLY---------------------- 03/07/2021/
+/continuidad
+//
+```{r}
+temp<-list(c(3,7,9,6,1),c(6,9,12,13,5),c(4,8,3,-1,-3),c(1,4,7,2,-2),c(5,7,9,4,2),c(-3,5,8,9,4),c(3,6,9,4,1))
+extremes <- function(x){
+  c(min=min(x),max=max(x))
+}
+lapply(temp,extremes)
+sapply(temp,extremes)
+
+temp2<- list(1,2,3,4,5)
+func_temp2 <- function(x){
+  x
+}
+lapply(temp2,func_temp2)
+```
+/-------------------vAPPLY---------------------------/
+
+```{r}
+basics <- function(x)
+{
+  c(min=min(x),mean=mean(x),max=max(x))
+  
+}
+lapply(temp,basics)
+sapply(temp,basics)
+vapply(temp,basics,numeric(3))
+vapply(temp,basics,numeric(2))  #esta es una restricciones de VAPPLY, no podemos colocar una longitud desconocida
+
+temp3 <- c('Guatemala','Salvador','Honduras','Nicaragua')
+
+unique_letters <-function(name){
+ bane<- gsub(" ","",name) 
+ letters<- strsplit(name,split="")[[1]]
+ unique(letters)
+}
+lapply(temp3,unique_letters)
+sapply(temp3,unique_letters)
+vapply(temp3,unique_letters,nchar(7))
+```
+/-----------------UTILITIES-----------------------------------------------/
+
+
+```{r}
+errors <- c(1.9, -2.6, 4.0, -9.5, -3.4, 7.3)
+print(sum(abs(errors)))
+print(sum(abs(round(errors))))
+
+linkedin <- list(16, 9, 13, 5, 2, 17, 14)
+facebook <- list(17, 7, 5, 16, 8, 13, 14)
+
+li_vec <- unlist(linkedin)
+fb_vec <- unlist(facebook)
+
+social_vec <-append(li_vec,fb_vec)
+social_vec
+
+sort(social_vec,decreasing=TRUE)
+
+```
+/-----------------------------GREP & GREPL---------------------------/
+```{r}
+emails <- c("john.doe@ivyleague.edu", "education@world.gov", "dalai.lama@peace.org","invalid.edu", "quant@bigdatacollege.edu", "cookie.monster@sesame.tv")
+grepl(pattern='edu',x=emails)
+hits<-grep(patter="edu",x=emails)
+emails[hits]
+```
+
+
+
+
+
+
+
+
 
