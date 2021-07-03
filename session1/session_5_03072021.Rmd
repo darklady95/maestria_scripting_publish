@@ -71,4 +71,4 @@ ggplot(gapminder_1952,aes(x=pop,y=lifeExp,color=continent)) +
   geom_point()+
   scale_x_log10()
 ```
-
+Finalizacion 
