@@ -1,0 +1,61 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Introduction to the tydiverse
+
+```{r}
+library(gapminder)
+library(dplyr)
+gapminder
+
+```
+/-------FILTERING---------------------/
+```{r}
+gapminder %>%                         
+  filter(year==1957)
+```
+/------------------ARRGANE-----------------------------/
+
+```{r}
+
+gapminder %>%
+  arrange(lifeExp)
+
+gapminder %>%
+  arrange(desc(lifeExp))
+```
+<<<<<<< HEAD
+/------------FILTER AND ARRNGE-------------------/
+```{r}
+gapminder %>%
+  filter(year==1957) %>%
+  arrange(desc(pop))
+
+```
+/-------------------THE VERB MUTATE-------------------/
+```{r}
+gapminder %>%
+mutate(lifeExp=12 * lifeExp)
+gapminder %>%
+  mutate(lifeExpMonths=12*lifeExp)
+```
+/-----------------Combining filter, mutate and arrane------------------------/
+```{r}
+gapminder %>%
+  filter(year==2007) %>%
+  mutate(lifeExpMonths=12*lifeExp) %>%
+  arrange(desc(lifeExpMonths))
+
+```
+```{r}
+library(ggplot2)
+gapminder_1952 <-gapminder %>%
+  filter(year==1952)
+gapminder_1952
+ggplot (gapminder_1952,aes(x=pop,y=gdpPercap)) +
+geom_point()  
+
+
+
