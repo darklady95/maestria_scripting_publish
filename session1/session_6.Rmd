@@ -142,4 +142,4 @@ data <- counties %>%
 
 data
 ```
-
+--FINALIZACION SESSION 6 10/072021
