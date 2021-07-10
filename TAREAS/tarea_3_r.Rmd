@@ -1,0 +1,100 @@
+---
+title: "R Notebook TAREA 3"
+output: html_notebook
+
+----------------------------------------------------------------------------
+<b>LEER ARRHIVO CSV</b><br/><br/>
+<b>Basic syntax</b> <br/>
+# Comma as separator and dot as decimal point by default
+read.csv(file,                 # File name or full path of the file
+         header = TRUE,        # Whether to read the header or not
+         sep = ",",            # Separator of the values
+         quote = "\"",         # Quoting character
+         dec = ".",            # Decimal point
+         fill = TRUE,          # Whether to fill blacks or not
+         comment.char = "",    # Character of the comments or empty string 
+         encoding = "unknown", # Encoding of the file
+         ...)                  # Additional arguments
+
+# Semicolon as separator and comma as decimal point by default
+read.csv2(file, header = TRUE, sep = ";", quote = "\"", dec = ",",
+          fill = TRUE, comment.char = "", encoding = "unknown", ...)
+
+Basado en la sintaxis, y el comando read.csv, colocamos el archivo csv, bajo el mismo path donde se encuentra el notebook de R, para evitar un "file not found"
+----------------------------------------------------------------------------
+```{r}
+read.csv("primary_results.csv")
+dataset_results <- read.csv("primary_results.csv",header=TRUE)
+
+```
+-------------------------------------------------------------------------------
+<br/><br/>
+<b>PAQUETERIA dplyr</b><br/><br/>
+-------------------------------------------------------------------------------
+El paquete dplyr fue desarrollado por Hadley Wickham de RStudio y es un versión optimizada de su paquete plyr. El paquete dplyr no proporciona ninguna nueva funcionalidad a R per se, en el sentido que todo aquello que podemos hacer con dplyr lo podríamos hacer con la sintaxis básica de R.
+
+Una importante contribución del paquete dplyr es que proporciona una gramática (particularmente verbos) para la manipulación y operaciones con data frames. Con esta gramática podemos comunicar mediante nuestro código que es lo que estamos haciendo en los data frames a otras personas (asumiendo que conozcan la gramática). Esto es muy útil, ya que proporciona una abstracción que anteriormente no existía. Por último, cabe destacar que las funciones del paquete dplyr son muy rápidas, puesto que están implementadas con el lenguaje C++.
+
+<b>La grámatica de dplyr</b><br/>
+<br/>
+Algunas de los principales "verbos" del paquete dplyr son:
+<b><i>select</i></b>: devuelve un conjunto de columnas<br/>
+<b><i>filter</i></b>: devuelve un conjunto de filas según una o varias condiciones lógicas <br/>
+<b><i>arrange</i></b>: reordena filas de un data frame <br/>
+<b><i>rename</i></b>: renombra variables en una data frame <br/>
+<b><i>mutate</i></b>: añade nuevas variables/columnas o transforma variables existentes <br/>
+<b><i>summarise/summarize</i></b>: genera resúmenes estadísticos de diferentes variables en el <b><i>data frame, posiblemente con strata </br> _%>% </i></b>: el operador pipe es usado para conectar múltiples acciones en una única pipeline (tubería)<br/>
+
+<br/>
+<b>EJERCICIOS</b>
+<br/>
+
+1). Filtrar todos los votos del estado de Florida
+
+```{r}
+library("dplyr") 
+votos_florida<-filter(dataset_results,state=='Florida')
+```
+2). Utilice operadores lógicos (& and |), según corresponda:
+  2.1)Filtrar votos para los candidatos Hillary Clinton o Donald Trump
+  
+```{r}
+votos_hillary_o_donald<-filter(dataset_results,candidate=='Donald Trump' | candidate=='Hillary Clinton' )
+```
+  
+  2.2)Filtrar votos para el partido Demócrata y el condado Shelby
+```{r}
+votos_democrata_y_sehlby<-filter(dataset_results,party=='Democrat' & county=='Shelby' )
+```
+  2.3)Filtrar votos para el estado de Alabama y que la cantidad de votos sea mayor a 15000
+```{r}
+votos_alabama_y_cant_MAYOR_15000<-filter(dataset_results,state=='Alabama' & votes>15000 )
+```
+
+3) Utilice la función select y arrange para el siguiente filtrado
+   3.1) Filtrar votos para el estado de Texas y el condado  Denton, seleccionando unicamente las columnas party,candidate,    votes luego ordene de forma descendente por la columna votes
+```{r}
+multiple_consulta<-
+dataset_results %>%
+  filter(state=='Texas' & county =='Denton') %>%
+  select(party,candidate,votes) %>%
+  arrange(desc(votes))
+
+```
+4) Utilice la función mutate y arrange para el siguiente filtrado:
+  4.1) Filtrar por el partido Republicano, que el candidato sea Ted Cruz en el estado de Alaska, luego agregue una columna que se llame vote_count que sea la división de votes por fraction_votes (votes/fraction_votes), finalmente ordene de forma descendente por vote_count.
+  
+```{r}
+multiple_consulta_2<-
+dataset_results %>%
+filter(candidate=='Ted Cruz' & state=='Alaska') %>%
+mutate(vote_count= votes/fraction_votes) %>%
+arrange(desc(vote_count))
+
+
+```
+  
+  
+     
+   
+
