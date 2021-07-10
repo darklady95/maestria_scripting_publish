@@ -1,0 +1,145 @@
+---
+title: "R Notebook SESSION 6 iniciada 10/07/2021 10:35 AM"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(gapminder)
+library(dplyr)
+gapminder
+
+gapminder %>%
+  summarize(medianLifeExp= median(lifeExp))
+
+gapminder  %>%
+  filter (year==1957) %>%
+  summarize(medianLifeExp = median(lifeExp))
+
+gapminder  %>%
+  filter (year==1957) %>%
+  summarize(medianLifeExp = median(lifeExp),max(gdpPercap))
+
+
+ 
+```
+```{r}
+gapminder %>%
+  group_by(year) %>%
+  summarize(medianLifeExp=median(lifeExp),max(gdpPercap))
+
+
+```
+```{r}
+gapminder %>%
+  filter(year==1957) %>%
+  group_by(continent) %>%
+  summarize(medianLifeExp=median(lifeExp),max(gdpPercap))
+
+```
+
+```{r}
+gapminder %>%
+  group_by(continent,year) %>%
+  summarize(medianLifeExp=median(lifeExp),max(gdpPercap))
+```
+```{r}
+by_year <-gapminder %>%
+  group_by(year) %>%
+  summarise(medianLifeExp =median(lifeExp),max(gdpPercap))
+ by_year
+ ggplot(by_year,aes(x=year,y=medianLifeExp))+
+   geom_point()
+
+```
+
+```{r}
+by_year_continent <-gapminder %>%
+  group_by(continent, year) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+by_year_continent
+
+ggplot(by_year_continent,aes(x=year,y=medianGdpPercap,color=continent))+geom_point()
+
+```
+<b> TYPE OF VISUALIZATIONS</b>
+<br/>
+<b>Line Plots</b>
+<br/>
+```{r}
+by_year <-gapminder %>%
+  group_by(year) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+ggplot(by_year_continent,aes(x=year,y=medianGdpPercap,color=continent)) + geom_line()
+
+
+
+
+
+by_year <-gapminder %>%
+  group_by(year,continent) %>%
+  summarize(medianGdpPercap = median(gdpPercap))
+
+ggplot(by_year_continent,aes(x=year,y=medianGdpPercap,color=continent)) + geom_line()
+
+
+```
+<b> BAR PLOTS <b/>
+<br/>
+```{r}
+oceania_1952 <- gapminder %>%
+  filter(continent == "Oceania",year==1952)
+ggplot(oceania_1952,aes(x=country,y=gdpPercap,fill=country))+geom_col()
+
+```
+<b> HISTOGRAMAS </b>
+<br/>
+```{r}
+gapminder_1952 <- gapminder %>%
+  filter(year==1952) %>%
+  mutate(pop_by_mil=pop/1000000)
+
+gapminder_1952
+
+ggplot(gapminder_1952,aes(x=pop_by_mil)) + geom_histogram()
+ggplot(gapminder_1952,aes(x=pop_by_mil)) + geom_histogram(bins=50)
+
+
+```
+```{r}
+gapminder_1952 <- gapminder %>%
+  filter(year==1952)
+  
+
+gapminder_1952
+
+ggplot(gapminder_1952,aes(x=pop)) + geom_histogram(bins=50) + scale_x_log10()
+
+```
+
+<b>BOX PLOTS</>
+<br/>
+```{r}
+gapminder_1952 <- gapminder %>%
+filter(year==1952)
+
+ggplot(gapminder_1952, aes(x=continent,y=gdpPercap)) + geom_boxplot()+ scale_y_log10()
+```
+<b> DATA MANIPULATION WITH DPLYR </b>
+
+```{r}
+library(tidyverse)
+setwd("C:/Users/Digifact001/Documents/GitHub/maestria_scripting/SESIONES_03072021/")
+counties <- read_csv("counties.csv")
+counties
+data <- counties %>%
+   select(state,county,population,men,women) %>%
+   mutate(proportion_men=men/population) %>%
+  filter(population>10000) %>%
+  arrange(desc(proportion_men))
+
+data
+```
+

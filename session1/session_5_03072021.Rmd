@@ -95,4 +95,4 @@ ggplot(gapminder,aes(x=gdpPercap,y=lifeExp))+
   scale_x_log10() +
 facet_wrap(~ year)
 ```
-
+--FINALIZACION---
