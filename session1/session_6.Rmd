@@ -143,3 +143,81 @@ data <- counties %>%
 data
 ```
 --FINALIZACION SESSION 6 10/072021
+
+---INICIO 17/07/2021 10:00
+El comando COUNT
+```{r}
+
+countries_selected <- counties %>%
+  select(county,region,state,population,citizens)
+
+countries_selected %>%
+  count(region,sort=TRUE)
+
+countries_selected %>%
+  count(state,wt=citizens) %>%
+  arrange(desc(n))
+
+```                                               
+MUTATE
+
+```{r}
+countries_selected <- counties %>%
+   select(county,region,state,population,citizens,walk)
+
+countries_selected %>%
+  mutate(population_walk = population * walk/100) %>%
+  count(state, wt=population_walk, sort=TRUE)
+
+```
+
+SUMMARIZING
+```{r}
+countries_selected <- counties %>%
+   select(county,population,income,unemployment)
+
+countries_selected %>%
+  summarize(min_population=min(population),max_unemployment=max(unemployment),average_income=mean(income))
+
+countries_selected <- counties %>%
+  select(state,county,population,land_area)
+
+countries_selected %>%
+  group_by(state) %>%
+  summarize(total_area=sum(land_area),total_population=sum(population))
+
+countries_selected <-counties %>%
+  select(region,state,county,population)
+
+countries_selected %>%
+  group_by(region,state) %>%
+  summarize(total_pop=sum(population))
+  
+
+```
+COMANDOS TOP_N
+
+```{r}
+countries_selected <- counties %>%
+  select(region,state,county,metro,population,walk)
+
+
+countries_selected %>%
+  group_by(region) %>%
+  top_n(2, walk)
+
+
+countries_selected <- counties %>%
+  select(region,state,county,metro,population,walk,income)
+countries_selected %>%
+  group_by(region,state) %>%
+  summarize(average_income =mean(income)) %>%
+  ungroup() %>%
+  top_n(1,average_income)
+
+
+
+
+
+```
+
