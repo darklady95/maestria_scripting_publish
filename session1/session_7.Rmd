@@ -1,0 +1,19 @@
+---
+title: "R Notebook SESSION 7 iniciada 17/07/2021 12:01 PM"
+output: html_notebook
+---
+
+```{r}
+
+sets <- read_csv('sets.csv')
+themes <- read_csv('themes.csv')
+parts <- read_csv('parts.csv')
+part_categories <- read_csv('part_categories.csv')
+
+
+
+
+```
+
+
+
