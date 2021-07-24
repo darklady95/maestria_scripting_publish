@@ -5,15 +5,70 @@ output: html_notebook
 
 ```{r}
 
+
 sets <- read_csv('sets.csv')
 themes <- read_csv('themes.csv')
 parts <- read_csv('parts.csv')
 part_categories <- read_csv('part_categories.csv')
 
 
+counties <- read_csv('counties.csv')
+counties %>%
+  select(state,county,population,professional:production)
+counties %>%
+  select(state,county,population,ends_with("work"))
+
+counties %>%
+  select(state,county,population,ends_with("work"),starts_with("income"))
+```
+
+RENAME
+
+```{r}
+counties %>%
+   count(state) %>%
+  rename(num_counties=n)
+
+counties %>%
+select(state,county,poverty_rate=poverty)
+```
+
+USING TRANSMUTE
+Transmute, el resultado que se obtiene varia en funcion de la cantidad de columans  que se obtiene. Con el MUTATE, se conservan las columnas originales.
+
+```{r}
+counties %>%
+transmute(state,county,population,density=population/land_area)
 
 
 ```
 
+RENAME
 
+```{r}
+counties %>%
+rename(unemployment_rate = unemployment)
+
+counties %>%
+  select(state,county,contains("poverty"))
+
+
+```
+JOINING DATA WITH DPLYR
+
+```{r}
+
+view(parts)
+view(part_categories)
+view_parts <-parts %>%
+  inner_join(part_categories, by =c("part_cat_id"= "id"))
+view(view_parts)
+
+view_parts <-parts %>%
+  inner_join(part_categories, by=c("part_cat_id"="id"),suffix=c("_parts","_parts_categories"))
+
+view(view_parts)
+
+
+```
 
