@@ -70,5 +70,7 @@ view_parts <-parts %>%
 view(view_parts)
 
 
-```
 
+
+```
+<b> FIN SESION 24/07/2021 10:29 AM </b>
