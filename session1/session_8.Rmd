@@ -70,6 +70,11 @@ batmobile %>%
 batmobile %>%
   left_join(batwing,c("part_num","color_id"),suffix=c("_batmobile","_batwing"))
 ```
+
+<b>LEFT JOIN</b>
+
+
+
 ```{r}
 millenium_falcon <- inventory_parts_joined %>%
   filter(set_num == "7965-1")
@@ -102,6 +107,34 @@ millenium_falcon_colors %>%
   left_join(star_destroyer_colors,by="color_id",suffix=c("_falcon","_star_destroyer"))
 
 
+
+```
+<b>RIGHT JOIN</b>
+
+
+```{r}
+parts %>%
+  count(part_cat_id) %>%
+right_join(part_categories, by=c("part_cat_id"="id"))
+
+
+#--replace N/A--#
+
+parts %>%
+  count(part_cat_id) %>%
+right_join(part_categories, by=c("part_cat_id"="id"))%>%
+replace_na(list(n=0))  
+
+```
+```{r}
+themes
+
+```
+
+```{r}
+themes %>%
+  inner_join(themes, by=c("id"="parent_id"),suffix=c("_parent","_child")) %>%
+  filter(name_child=="Harry Poter")
 
 ```
 
