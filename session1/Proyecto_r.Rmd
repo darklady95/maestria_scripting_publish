@@ -162,7 +162,7 @@ El efecto del lavado de manos se hace aún más claro si lo resaltamos en el gr�
 library(lubridate)
  library(dplyr)
 monthly_year <-
-monthly %>%
+monthly_prop %>%
   mutate(
         dates2=ymd(date), # convert to Date type using lubridate
         year=year(dates2), # extract parts
@@ -171,35 +171,58 @@ monthly %>%
         handwashing_started= ifelse(year >=1847,TRUE,FALSE)
         )
 
-monthly_year 
+monthly_year %>%
+  select("date","births","deaths","handwashing_started")
   
 ```
 
 <b>6.2.</b> Haga una gráfica lineal de proportion_deaths por fecha para el data frame monthly
 usando ggplot. Haga que el color de la línea dependa de handwashing_started.
 ```{r}
+ggplot(monthly_year,aes(x=date,y=proportion_deaths,color=handwashing_started)) + geom_line() +
+ ggtitle("Efecto de lavado de manos antes y despues de 1847") +
+        xlab("Fecha Registrada") + ylab("Proprocion Muertes y Nacimientos %") +
+        theme(plot.title = element_text(hjust = 0.5,color = "blue", size = 12, face="bold"),
+              text=element_text(size=10,family="TT Times New Roman")) 
 
 ```
 
-<b>6.3.</b> Utilice la función labs para dar al eje x y al eje y una estética a las etiquetas.
+<b>6.3.</b> Utilice la función labs para dar al eje x y al eje y una estética a las etiquetas.<br/>
 Dado que la columna monthly$date es una fecha, puede compararla con otras fechas
 utilizando los operadores de comparación (<,> =, ==, etc.).
 ```{r}
+ggplot(monthly_year,aes(x=date,y=proportion_deaths,color=handwashing_started)) + geom_line() +
+ ggtitle("Efecto de lavado de manos antes y despues de 1847") +
+        xlab("Fecha Registrada") + ylab("Proprocion Muertes y Nacimientos %") +
+        theme(plot.title = element_text(hjust = 0.5,color = "blue", size = 12, face="bold"),
+              text=element_text(size=10,family="TT Times New Roman")) 
+
 
 ```
 
-<b>7. ¿Más lavado de manos, menos muertes?</b>
+<b>7. ¿Más lavado de manos, menos muertes?</b> <br/>
 Nuevamente, las estadísticas demuestran que lavarse las manos tuvo un efecto enorme.
 ¿Cuánto redujo la proporción mensual de muertes en promedio? <br/>
-<b>7.1.</b> Utilice group_by y summarise para calcular el promedio de proportion_deaths antes y
+<b>7.1.</b> Utilice <i>group_by</i> y <i>summarise</i> para calcular el promedio de proportion_deaths antes y
 después de que se impusiera el lavado de manos.
 ```{r}
+monthly_year %>%
+   group_by(date)%>%
+  summarize(promedio_muertes=mean(proportion_deaths,na.rm=TRUE))
+  
+
+
 
 ```
 
 <b>7.2.</b> Asigne el resultado en la variable month_summary e imprímala.
 ```{r}
 
+month_summary <-
+monthly_year %>%
+   group_by(date)%>%
+  summarize(promedio_muertes=mean(proportion_deaths,na.rm=TRUE))
+month_summary
 ```
 
 <b>7.3.</b> El data frame resultante debería verse como el siguiente
