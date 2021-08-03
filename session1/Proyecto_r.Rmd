@@ -1,0 +1,190 @@
+---
+title: "Proyecto R"
+output: html_notebook
+---
+
+<b>Objetivos</b> <br/>
+<b>General</b> <br/>
+Poner en práctica los conocimientos cubiertos en el curso, desde la estructura de datos
+hasta la visualización de los mismos.<br/>
+<b>Específicos</b> <br/>
+● Manipular distintos tipos de datos. <br/>
+● Aplicar funciones preestablecidas de R. <br/>
+● Visualizar datos a través de la librería ggplot2.<br/>
+● Aplicar lógica de programación para resolver algunos apartados del proyecto. <br/>
+<b>Descripción</b> <br/>
+La sepsis ocasiona en el mundo más de mil muertes cada día, muchos de estos pacientes <br/>
+adquieren la infección estando hospitalizados y constituye la complicación intrahospitalaria más <br/>
+frecuente. La infección de pacientes por las manos contaminadas del personal de salud es una de <br/>
+las formas de diseminación de los agentes infecciosos. La higiene de las manos es el factor
+individual más importante para el control de las infecciones, es difícil entender que un hecho tan
+rutinario en la práctica de la medicina, como lavarse las manos previo a examinar a un paciente,
+haya causado tanta controversia en la época de 1800.
+A principios de la década de 1840 se descubrió una enfermedad mortal que afectaba a las
+mujeres que acababan de dar a luz, cerca del 10% de las mujeres morían a causa de esta
+enfermedad y el origen provenía de las manos contaminadas del personal médico que atendía
+los partos.
+En este proyecto, vamos a analizar los datos que demuestran la importancia del lavado de
+manos, identificando anomalías en los procedimientos médicos.<br/>
+
+<b>1. Conociendo los datos</b> <br/>
+<b>1.1.</b>. Cargue el paquete <i>tidyverse</i>. <br/>
+```{r}
+
+library(tidyverse)
+
+```
+
+<b>1.2.</b>Lea el archivo <i>deaths_handwashing.csv</i> usando <i>read_csv</i> y asígnelo a la variable <i>yearly</i>.
+
+```{r}
+yearly <- read_csv('deaths_handwashing.csv')
+
+
+```
+<b>1.3.</b> Imprima la variable <i>yearly</i>
+
+```{r}
+view(yearly)
+```
+<b>2.</b> El alarmante número de muertes <br/>
+La tabla anterior muestra el número de mujeres que dieron a luz durante los años 1841 a
+1846 en una ciudad al noreste de Austria, en dos clínicas en particular. Notará que dar a luz
+era muy peligroso; un número alarmante de mujeres murió como resultado del parto. Vemos
+esto con mayor claridad si observamos la proporción de muertes con respecto al número de
+mujeres que dieron a luz.<br/>
+<b>2.1.</b> Use <i>mutate</i> para agregar la columna <i>proportion_deaths a yearly</i>, esta nueva columna se
+calculará como la proporción de muertes por número de nacimientos.
+
+```{r}
+yearly_prop <-
+yearly %>%
+ mutate(proportion_deaths=(deaths/births)*100)
+
+```
+
+<b>2.2.</b> Imprima <b>yearly</b>
+
+```{r}
+yearly_prop
+
+```
+
+<b>3. Muerte en las clínicas</b>
+
+Si ahora graficamos la proporción de muertes tanto en la clínica 1 como en la clínica 2,
+veremos un patrón curioso. <br/>
+
+<b>3.1.</b> Utilice <i>ggplot</i> para hacer una gráfica lineal de <i>proportion_deaths</i> por año (columna
+<i>year</i>) con una línea por clínica.<br/>
+```{r}
+
+ggplot(yearly_prop,aes(x=year,y=proportion_deaths,color=clinic)) + geom_line()
+
+
+```
+
+<b>3.2.</b> Las líneas deben tener colores distintos.<br/>
+
+```{r}
+ggplot(yearly_prop,aes(x=year,y=proportion_deaths,color=clinic)) + geom_line()
+```
+
+<b>4. Comienza el lavado de manos</b><br/>
+¿Por qué la proporción de muertes es mucho más alta en la Clínica 1? La única diferencia en
+ambas clínicas era que muchos estudiantes de medicina trabajaban en la Clínica 1, mientras
+que en la Clínica 2 no habían tantos. Otro dato interesante es que los médicos que atendían
+partos solo se encargaban de esa función, mientras que los estudiantes también pasaban
+tiempo en las salas de autopsias examinando cadáveres.<br/>
+Se empezó a sospechar que algo en los cadáveres, propagado de las manos de los estudiantes
+de medicina, causaba la enfermedad. Entonces, en un intento desesperado por detener las
+altas tasas de mortalidad, se decretó: ¡Lávese las manos en todo momento! <br/><br/>
+<b>4.1.</b> Cargue los datos mensuales de la Clínica 1 para ver si el lavado de manos tuvo algún
+efecto, para esto lea el archivo <i>deaths_clinic_1.csv</i> y asígnelo a la variable <i>monthly</i>.<br/>
+```{r}
+monthly <- read_csv('deaths_clinic_1.csv')
+
+```
+
+<b>4.2.</b> Agregue la columna <i>proportion_deaths</i> a <i>monthly</i>, esta nueva columna se calculará
+como la proporción de muertes por número de nacimientos.
+```{r}
+
+monthly_prop <-
+monthly %>%
+ mutate(proportion_deaths=(deaths/births)*100)
+
+```
+
+<b>4.3.</b> Imprima las primeras filas de <i>monthly</i> usando la función <i>head()</i>.
+```{r}
+
+show_top_10 <-
+head(monthly_prop,10)
+show_top_10
+
+```
+
+<b>5. El efecto del lavado de manos</b> <br/>
+Con los datos cargados, ahora podemos ver la proporción de muertes a lo largo del tiempo.<br/>
+<b>5.1.</b> Haga una gráfica lineal de proportion_deaths por fecha para el data frame <i>monthly</i>
+usando <i>ggplot</i>.
+```{r}
+ggplot(monthly_prop,aes(x=date,y=proportion_deaths)) + geom_line()
+```
+
+<b>5.2.</b> Utilice la función <i>labs</i> para dar al eje x y al eje y una estética a las etiquetas.
+```{r}
+
+ggplot(monthly_prop,aes(x=date,y=proportion_deaths)) + geom_line() +
+ ggtitle("Efecto de lavado de manos") +
+        xlab("Fecha Registrada") + ylab("Proprocion Muertes y Nacimientos %") +
+        theme(plot.title = element_text(hjust = 0.5,color = "blue", size = 12, face="bold"),
+              text=element_text(size=10,family="TT Times New Roman")) 
+#       family="Comic Sans MS"))
+#       family="CM Roman"))
+#       family="TT Times New Roman"))
+#       family="Sans"))
+#       family="Serif"))
+
+
+```
+<b>6. Los resultados del lavado de manos</b> <br/>
+A partir del año 1847 la proporción de muertes se reduce drásticamente y, sí, fue entonces
+cuando se hizo obligatorio el lavado de manos.
+El efecto del lavado de manos se hace aún más claro si lo resaltamos en el gráfico. <br/>
+<b>6.1.</b> Agregue una columna TRUE/FALSE a monthly llamado handwashing_started, que será
+TRUE a partir del año en que se impuso el lavado de manos.
+```{r}
+
+```
+
+<b>6.2.</b> Haga una gráfica lineal de proportion_deaths por fecha para el data frame monthly
+usando ggplot. Haga que el color de la línea dependa de handwashing_started.
+```{r}
+
+```
+
+<b>6.3.</b> Utilice la función labs para dar al eje x y al eje y una estética a las etiquetas.
+Dado que la columna monthly$date es una fecha, puede compararla con otras fechas
+utilizando los operadores de comparación (<,> =, ==, etc.).
+```{r}
+
+```
+
+<b>7. ¿Más lavado de manos, menos muertes?</b>
+Nuevamente, las estadísticas demuestran que lavarse las manos tuvo un efecto enorme.
+¿Cuánto redujo la proporción mensual de muertes en promedio? <br/>
+<b>7.1.</b> Utilice group_by y summarise para calcular el promedio de proportion_deaths antes y
+después de que se impusiera el lavado de manos.
+```{r}
+
+```
+
+<b>7.2.</b> Asigne el resultado en la variable month_summary e imprímala.
+```{r}
+
+```
+
+<b>7.3.</b> El data frame resultante debería verse como el siguiente
+
