@@ -104,6 +104,8 @@ efecto, para esto lea el archivo <i>deaths_clinic_1.csv</i> y asígnelo a la var
 ```{r}
 monthly <- read_csv('deaths_clinic_1.csv')
 
+view(monthly)
+
 ```
 
 <b>4.2.</b> Agregue la columna <i>proportion_deaths</i> a <i>monthly</i>, esta nueva columna se calculará
@@ -153,10 +155,24 @@ ggplot(monthly_prop,aes(x=date,y=proportion_deaths)) + geom_line() +
 A partir del año 1847 la proporción de muertes se reduce drásticamente y, sí, fue entonces
 cuando se hizo obligatorio el lavado de manos.
 El efecto del lavado de manos se hace aún más claro si lo resaltamos en el gráfico. <br/>
-<b>6.1.</b> Agregue una columna TRUE/FALSE a monthly llamado handwashing_started, que será
-TRUE a partir del año en que se impuso el lavado de manos.
+<b>6.1.</b> Agregue una columna TRUE/FALSE a <i>monthly</i> llamado <i>handwashing_started</i>, que será
+<b>TRUE</b> a partir del año en que se impuso el lavado de manos.
 ```{r}
 
+library(lubridate)
+ library(dplyr)
+monthly_year <-
+monthly %>%
+  mutate(
+        dates2=ymd(date), # convert to Date type using lubridate
+        year=year(dates2), # extract parts
+        month=month(dates2),
+        day=day(dates2),
+        handwashing_started= ifelse(year >=1847,TRUE,FALSE)
+        )
+
+monthly_year 
+  
 ```
 
 <b>6.2.</b> Haga una gráfica lineal de proportion_deaths por fecha para el data frame monthly
