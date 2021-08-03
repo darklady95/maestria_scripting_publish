@@ -206,10 +206,14 @@ Nuevamente, las estadísticas demuestran que lavarse las manos tuvo un efecto en
 <b>7.1.</b> Utilice <i>group_by</i> y <i>summarise</i> para calcular el promedio de proportion_deaths antes y
 después de que se impusiera el lavado de manos.
 ```{r}
+
+month_summary_1 <-
 monthly_year %>%
-   group_by(date)%>%
-  summarize(promedio_muertes=mean(proportion_deaths,na.rm=TRUE))
-  
+   group_by(year)%>%
+  summarize(promedio_muertes=mean(proportion_deaths,na.rm=TRUE))%>%
+   mutate(ANTES_DESPUES= ifelse(year >=1847,'DESPUES DE LAVADO','ANTES DE LAVADO')) %>%
+   group_by(ANTES_DESPUES)%>%
+     summarize(promedio_muertes_ANTES_DESPUES=mean(promedio_muertes,na.rm=TRUE))
 
 
 
@@ -218,12 +222,24 @@ monthly_year %>%
 <b>7.2.</b> Asigne el resultado en la variable month_summary e imprímala.
 ```{r}
 
-month_summary <-
-monthly_year %>%
-   group_by(date)%>%
-  summarize(promedio_muertes=mean(proportion_deaths,na.rm=TRUE))
-month_summary
+month_summary_1 
+  
 ```
 
 <b>7.3.</b> El data frame resultante debería verse como el siguiente
+
+```{r}
+
+month_summary <-
+monthly_year %>%
+   group_by(year)%>%
+  summarize(promedio_muertes=mean(proportion_deaths,na.rm=TRUE))%>%
+   mutate(handwashing_started= ifelse(year >=1847,'TRUE','FALSE')) %>%
+   group_by(handwashing_started)%>%
+     summarize(mean_proportion_deaths=mean(promedio_muertes,na.rm=TRUE))
+
+
+month_summary
+
+```
 
